@@ -193,6 +193,13 @@ config CPU_FREQ_DEFAULT_GOV_DANCEDANCE
 	bool "DanceDance"
 	select CPU_FREQ_GOV_DANCEDANCE
 
+config CPU_FREQ_DEFAULT_GOV_SAVAGEDZEN
+	bool "SavagedZen"
+	select CPU_FREQ_GOV_SAVAGEDZEN
+	select CPU_FREQ_GOV_PERFORMANCE
+	help
+	  Use the CPUFreq governor 'savagedzen' as default.
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -452,6 +459,13 @@ config CPU_FREQ_GOV_DANCEDANCE
 	  Modified code based off conservative with a faster
 	  deep sleep rate
 	  If in doubt, say N.
+
+config CPU_FREQ_GOV_SAVAGEDZEN
+	tristate "'savagedzen' cpufreq governor"
+	depends on CPU_FREQ
+	help
+	   'Savaged-Zen' - a "smartass" based governor
+	   If in doubt, say N.
 
 menu "x86 CPU frequency scaling drivers"
 depends on X86
