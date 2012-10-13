@@ -206,6 +206,12 @@ config CPU_FREQ_DEFAULT_GOV_LIONHEART
 	help
 	  Use the CPUFreq governor 'lionheart' as default.
 
+config CPU_FREQ_DEFAULT_GOV_PEGASUSQ
+	bool "pegasusq"
+	select CPU_FREQ_GOV_PEGASUSQ
+	help
+	  Use the CPUFreq governor 'pegasusq' as default.
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -479,6 +485,11 @@ config CPU_FREQ_GOV_LIONHEART
 	help
 	  'lionheart' - A brave and agile conservative-based governor.
 	  If in doubt, say N.
+
+config CPU_FREQ_GOV_PEGASUSQ
+	tristate "'pegasusq' cpufreq policy governor"
+	help
+	  'pegasusq' - A dynamic cpufreq governor
 
 menu "x86 CPU frequency scaling drivers"
 depends on X86
