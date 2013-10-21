@@ -8,4 +8,12 @@ config BRICKED_HOTPLUG
 	  This enables kernel based multi core control.
 	  (up/down hotplug based on load)
 
+config INTELLI_HOTPLUG
+	bool "Intelli hotplug driver"
+	depends on HOTPLUG_CPU
+	default n
+	help
+	  An intelligent cpu hotplug driver for
+	  Low Latency Frequency Transition capable processors.
+
 endmenu
