@@ -133,6 +133,12 @@ config CPU_FREQ_DEFAULT_GOV_SMARTASSH3
 	help
 	  Use the CPUFreq governor 'SmartassH3' as default.
 
+config CPU_FREQ_DEFAULT_GOV_SMARTMAX
+	bool "smartmax"
+	select CPU_FREQ_GOV_SMARTMAX
+	help
+	  Use the CPUFreq governor 'smartmax' as default
+
 endchoice
 
 config CPU_FREQ_GOV_PERFORMANCE
@@ -302,6 +308,12 @@ config CPU_FREQ_GOV_SMARTASSH3
 	help
 	  SmartassH3 - a "smartassV2 with tweaks by H3ROS" governor!
 	  If in doubt, say N.
+
+config CPU_FREQ_GOV_SMARTMAX
+	tristate "'smartmax' cpufreq policy governor"
+	select CPU_FREQ_TABLE
+	help
+	  'smartmax' combined ondemand and smartass2
 
 menu "x86 CPU frequency scaling drivers"
 depends on X86
