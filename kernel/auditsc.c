@@ -1792,7 +1792,7 @@ void __audit_syscall_entry(int arch, int major,
 {
 	struct task_struct *tsk = current;
 	struct audit_context *context = tsk->audit_context;
-	enum audit_state     state;
+	enum audit_state     state = 0;
 
 	if (!context)
 		return;
