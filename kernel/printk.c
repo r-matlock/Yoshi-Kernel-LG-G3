@@ -211,7 +211,7 @@ struct log {
 static DEFINE_RAW_SPINLOCK(logbuf_lock);
 
 /* cpu currently holding logbuf_lock */
-static volatile unsigned int logbuf_cpu = UINT_MAX;
+static volatile unsigned int printk_cpu = UINT_MAX;
 
 #define LOG_LINE_MAX 1024
 
@@ -1202,12 +1202,8 @@ static int console_trylock_for_printk(unsigned int cpu)
 			retval = 0;
 		}
 	}
-<<<<<<< HEAD
-	logbuf_cpu = UINT_MAX;
-=======
 	printk_cpu = UINT_MAX;
 	raw_spin_unlock(&logbuf_lock);
->>>>>>> v3.4.105
 	if (wake)
 		up(&console_sem);
 	return retval;
@@ -1254,7 +1250,7 @@ asmlinkage int vprintk_emit(int facility, int level,
 	/*
 	 * Ouch, printk recursed into itself!
 	 */
-	if (unlikely(logbuf_cpu == this_cpu)) {
+	if (unlikely(printk_cpu == this_cpu)) {
 		/*
 		 * If a crash is occurring during printk() on this CPU,
 		 * then try to get the crash message out but make sure
@@ -1271,7 +1267,7 @@ asmlinkage int vprintk_emit(int facility, int level,
 
 	lockdep_off();
 	raw_spin_lock(&logbuf_lock);
-	logbuf_cpu = this_cpu;
+	printk_cpu = this_cpu;
 
 	if (recursion_bug) {
 		static const char recursion_msg[] =

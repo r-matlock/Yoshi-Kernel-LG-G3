@@ -48,6 +48,5 @@
  * calculation instead of the exponent variable used in the calculation.
  */
 #define USB_QUIRK_LINEAR_UFRAME_INTR_BINTERVAL	0x00000080
->>>>>>> v3.4.110
 
 #endif /* __LINUX_USB_QUIRKS_H */
