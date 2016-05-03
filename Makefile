@@ -1,6 +1,6 @@
 VERSION = 3
 PATCHLEVEL = 4
-SUBLEVEL = 0
+SUBLEVEL = 105
 EXTRAVERSION =
 NAME = Saber-toothed Squirrel
 
@@ -608,7 +608,6 @@ ifndef CONFIG_FUNCTION_TRACER
 KBUILD_CFLAGS	+= -fomit-frame-pointer
 endif
 endif
-
 
 ifdef CONFIG_DEBUG_INFO
 KBUILD_CFLAGS	+= -g
