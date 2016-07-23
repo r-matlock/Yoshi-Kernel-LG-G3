@@ -439,6 +439,7 @@ static ssize_t headphone_gain_store(struct kobject *kobj,
 	return count;
 }
 
+#if 0 /* LP sound driver do not work with PA high/low */
 static ssize_t headphone_pa_gain_show(struct kobject *kobj,
 		struct kobj_attribute *attr, char *buf)
 {
@@ -483,6 +484,7 @@ static ssize_t headphone_pa_gain_store(struct kobject *kobj,
 	}
 	return count;
 }
+#endif
 
 static unsigned int selected_reg = 0xdeadbeef;
 
@@ -610,11 +612,13 @@ static struct kobj_attribute headphone_gain_attribute =
 		headphone_gain_show,
 		headphone_gain_store);
 
+#if 0 /* LP sound driver do not work with PA high/low */
 static struct kobj_attribute headphone_pa_gain_attribute =
 	__ATTR(gpl_headphone_pa_gain,
 		0666,
 		headphone_pa_gain_show,
 		headphone_pa_gain_store);
+#endif
 
 static struct kobj_attribute sound_control_locked_attribute =
 	__ATTR(gpl_sound_control_locked,
@@ -644,7 +648,7 @@ static struct attribute *sound_control_attrs[] =
 		&mic_gain_attribute.attr,
 		&speaker_gain_attribute.attr,
 		&headphone_gain_attribute.attr,
-		&headphone_pa_gain_attribute.attr,
+		//&headphone_pa_gain_attribute.attr,
 		&sound_control_locked_attribute.attr,
 		&sound_control_rec_locked_attribute.attr,
 		&sound_reg_sel_attribute.attr,
